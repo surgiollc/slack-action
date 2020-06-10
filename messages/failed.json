@@ -28,5 +28,7 @@
         }
       ]
     }
-  ]
+  ],
+  "icon_emoji":":gear:",
+  "username": "Github Actions Bot"
 }
