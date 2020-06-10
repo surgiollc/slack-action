@@ -16,7 +16,7 @@ try {
   const branch_url = payload.repository.html_url + "/tree/" + branch;
   const run_url = payload.repository.html_url + "/runs/" + process.env.GITHUB_RUN_ID;
   const error = "";
-  const script = github.action;
+  const script = process.env.GITHUB_WORKFLOW;
 
   console.log(`Author: ${author}`);
   console.log(`Message: ${commit_message}`);
@@ -27,7 +27,8 @@ try {
   console.log(`error: ${error}`);
   console.log(`script: ${script}`);
   //console.log(event);
-  console.log(process.env.GITHUB_RUN_ID);
+  console.log(process.env.STEPS);
+
 
   const payload2 = JSON.stringify(github, undefined, 2);
   console.log(`The event payload: ${payload2}`);
