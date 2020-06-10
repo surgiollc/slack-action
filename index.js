@@ -26,13 +26,7 @@ try {
     core.setFailed("No webhook provided. Please add the env variable: SLACK_WEBHOOK");
   }
 
-  console.log(`Author: ${author}`);
-  console.log(`Message: ${commit_message}`);
-  console.log(`commit: ${commit_url}`);
-  console.log(`branch: ${branch}`);
-  console.log(`branch url: ${branch_url}`);
-  console.log(`run_url: ${run_url}`);
-  console.log(`script: ${script}`);
+  console.log(process.env);
 
   message = errorMsg
     .replace(/{script}/g,  script)
