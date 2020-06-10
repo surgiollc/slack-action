@@ -9,10 +9,6 @@
       "fallback": "{author}'s build failed.",
       "fields": [
         {
-          "title": "Error Message:",
-          "value": "{error}"
-        },
-        {
           "title": "Commit Message:",
           "value": "{commit_message}"
         }
