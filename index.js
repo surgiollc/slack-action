@@ -6,27 +6,22 @@ const axios = require('axios');
 
 const errorMsg = fs.readFileSync(path.join(__dirname, 'messages', 'failed.json'), 'utf8');
 
-//const payload = JSON.parse(fs.readFileSync('sample.json', 'utf8'));
-
 try {
-  // Get the JSON webhook payload for the event that triggered the workflow
   const payload = github.context.payload;
-  //const payload = JSON.parse(input);
   const lastCommit = payload.head_commit;
+
   const author = lastCommit.author.name;
   const commit_message = lastCommit.message;
   const commit_url = lastCommit.url;
   const branch = payload.ref.replace("refs/heads/", "");
   const branch_url = payload.repository.html_url + "/tree/" + branch;
-  const run_url = payload.repository.html_url + "/runs/" + process.env.GITHUB_RUN_ID;
+  const run_url = payload.repository.html_url + "/actions/runs/" + process.env.GITHUB_RUN_ID;
   const script = process.env.GITHUB_WORKFLOW || "Build";
-  const webhook = process.env.SLACK_WEBHOOK || null;
+  const webhook = core.getInput("SLACK_WEBHOOK") || null;
 
   if (!webhook) {
     core.setFailed("No webhook provided. Please add the env variable: SLACK_WEBHOOK");
   }
-
-  console.log(process.env);
 
   message = errorMsg
     .replace(/{script}/g,  script)

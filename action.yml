@@ -1,10 +1,11 @@
 name: 'Slack Notification'
+author: 'blake@surgio.com'
 description: 'Broadcast that a build failed over slack.'
 inputs:
-  broadcast-failures:  # id of input
-    description: 'Enable outbound messages on build failures'
+  SLACK_WEBHOOK:
+    description: 'Url to the slack webhook'
     required: true
-    default: "true"
+    default: null
 runs:
   using: 'node12'
   main: 'index.js'
