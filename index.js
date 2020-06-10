@@ -1,22 +1,20 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
-const event = JSON.parse(fs.readFileSync('/github/workflow/event.json', 'utf8'))
 
-//const input = fs.readFileSync('sample.json');
+// const payload = JSON.parse(fs.readFileSync('sample.json', 'utf8'));
 
 try {
   // Get the JSON webhook payload for the event that triggered the workflow
   const payload = github.context.payload;
   //const payload = JSON.parse(input);
   const lastCommit = payload.head_commit;
-  console.log(lastCommit);
   const author = lastCommit.author.name;
   const commit_message = lastCommit.message;
   const commit_url = lastCommit.url;
   const branch = payload.ref.replace("refs/heads/", "");
   const branch_url = payload.repository.html_url + "/tree/" + branch;
-  const run_url = payload.repository.html_url + "/runs/" + github.run_number;
+  const run_url = payload.repository.html_url + "/runs/" + process.env.GITHUB_RUN_ID;
   const error = "";
   const script = github.action;
 
@@ -28,7 +26,8 @@ try {
   console.log(`run_url: ${run_url}`);
   console.log(`error: ${error}`);
   console.log(`script: ${script}`);
-  console.log(event);
+  //console.log(event);
+  console.log(process.env.GITHUB_RUN_ID);
 
   const payload2 = JSON.stringify(github, undefined, 2);
   console.log(`The event payload: ${payload2}`);
