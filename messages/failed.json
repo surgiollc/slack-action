@@ -1,12 +1,12 @@
 {
   "attachments": [
     {
-      "pretext": "Build failed. ",
+      "pretext": "{script} failed. ",
       "color": "danger",
-      "author_name": "{user}",
+      "author_name": "{author}",
       "title": "{branch}",
       "title_link": "{branch_url}",
-      "fallback": "{user}'s build failed.",
+      "fallback": "{author}'s build failed.",
       "fields": [
         {
           "title": "Error Message:",

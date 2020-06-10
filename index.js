@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
+const errorMsg = fs.readFileSync('messages/failed.json', 'utf8');
 
 // const payload = JSON.parse(fs.readFileSync('sample.json', 'utf8'));
 
@@ -27,11 +28,10 @@ try {
   console.log(`error: ${error}`);
   console.log(`script: ${script}`);
   //console.log(event);
-  console.log(process.env.STEPS);
+  console.log(process.env);
 
-
-  const payload2 = JSON.stringify(github, undefined, 2);
-  console.log(`The event payload: ${payload2}`);
+  errorMsg.replace('{author}', author);
+  console.log(errorMsg);
 } catch (error) {
   core.setFailed(error.message);
 }
