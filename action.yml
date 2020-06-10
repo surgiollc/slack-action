@@ -1,0 +1,10 @@
+name: 'Slack Notification'
+description: 'Broadcast that a build failed over slack.'
+inputs:
+  broadcast-failures:  # id of input
+    description: 'Enable outbound messages on build failures'
+    required: true
+    default: "true"
+runs:
+  using: 'node12'
+  main: 'index.js'

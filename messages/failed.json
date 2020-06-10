@@ -1,0 +1,36 @@
+{
+  "attachments": [
+    {
+      "pretext": "Build failed. ",
+      "color": "danger",
+      "author_name": "{user}",
+      "title": "{branch}",
+      "title_link": "{branch_url}",
+      "fallback": "{user}'s build failed.",
+      "fields": [
+        {
+          "title": "Error Message:",
+          "value": "{error}"
+        },
+        {
+          "title": "Commit Message:",
+          "value": "{commit_message}"
+        }
+      ],
+      "actions": [
+        {
+          "name": "build",
+          "type": "button",
+          "text": "View Run",
+          "url": "{run_url}"
+        },
+        {
+          "name": "commit",
+          "type": "button",
+          "text": "View Commit",
+          "url": "{commit_url}"
+        }
+      ]
+    }
+  ]
+}
