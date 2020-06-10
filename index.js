@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
+const event = JSON.parse(fs.readFileSync('/github/workflow/event.json', 'utf8'))
 
 //const input = fs.readFileSync('sample.json');
 
@@ -27,6 +28,7 @@ try {
   console.log(`run_url: ${run_url}`);
   console.log(`error: ${error}`);
   console.log(`script: ${script}`);
+  console.log(event);
 
   const payload2 = JSON.stringify(github, undefined, 2);
   console.log(`The event payload: ${payload2}`);
