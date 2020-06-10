@@ -3,7 +3,7 @@ const github = require('@actions/github');
 const fs = require('fs');
 const path = require('path');
 
-const errorMsg = fs.readFileSync(path.join(__dirname, '..', 'messages', 'failed.json'), 'utf8');
+const errorMsg = fs.readFileSync(path.join(__dirname, 'messages', 'failed.json'), 'utf8');
 
 // const payload = JSON.parse(fs.readFileSync('sample.json', 'utf8'));
 
