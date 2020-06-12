@@ -44,9 +44,11 @@ try {
     ]
   }
 
-  axios.post(webhook, JSON.stringify(msg)).catch((error) => {
-    core.setFailed(error);
-  })
+  console.log(msg);
+
+  // axios.post(webhook, JSON.stringify(msg)).catch((error) => {
+  //   core.setFailed(error);
+  // });
 
 } catch (error) {
   core.setFailed(error.message);
