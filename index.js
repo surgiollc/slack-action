@@ -32,7 +32,7 @@ try {
     .replace(/{run_url}/g, run_url)
     .replace(/{commit_url}/g, commit_url);
 
-  console.log(JSON.stringify(github.context.steps));
+  console.log(JSON.stringify(github.steps));
   console.log(JSON.stringify(github.context.jobs));
   console.log(JSON.stringify(github.context));
 
