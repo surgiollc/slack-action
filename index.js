@@ -32,7 +32,9 @@ try {
     .replace(/{run_url}/g, run_url)
     .replace(/{commit_url}/g, commit_url);
 
-  console.log(github.context);
+  console.log(JSON.stringify(github.context.steps));
+  console.log(JSON.stringify(github.context.jobs));
+  console.log(JSON.stringify(github.context));
 
   // axios.post(webhook, JSON.stringify(msg)).catch((error) => {
   //   core.setFailed(error);
