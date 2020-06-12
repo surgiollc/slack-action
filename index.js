@@ -38,13 +38,13 @@ try {
         "type": "section",
         "text": {
           "type": "mrkdwn",
-          "text": JSON.stringify(github.context)
+          "text": github.context
         }
       }
     ]
   }
 
-  axios.post(webhook, msg).catch((error) => {
+  axios.post(webhook, JSON.stringify(msg)).catch((error) => {
     core.setFailed(error);
   })
 
