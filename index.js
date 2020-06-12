@@ -32,19 +32,7 @@ try {
     .replace(/{run_url}/g, run_url)
     .replace(/{commit_url}/g, commit_url);
 
-  msg = {
-    "blocks": [
-      {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": github.context
-        }
-      }
-    ]
-  }
-
-  console.log(msg);
+  console.log(github.context);
 
   // axios.post(webhook, JSON.stringify(msg)).catch((error) => {
   //   core.setFailed(error);
