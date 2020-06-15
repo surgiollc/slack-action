@@ -20,6 +20,8 @@ try {
   const webhook = core.getInput("SLACK_WEBHOOK") || null;
   const steps = core.getInput("STEPS_CONTEXT") || {};
 
+  console.log(steps)
+
   let failures = [];
   for (const step of Object.keys(steps)) {
     if (steps[step].outcome === "failure") {
@@ -43,14 +45,9 @@ try {
 
   console.log(message);
 
-  // console.log(JSON.stringify(process.env));
-  // console.log(JSON.stringify(github.context.jobs));
-  // console.log(JSON.stringify(github.context));
-
   axios.post(webhook, JSON.stringify(message)).catch((error) => {
     core.setFailed(error);
   });
-
 } catch (error) {
   core.setFailed(error.message);
 }
