@@ -9,7 +9,7 @@ inputs:
   STEPS_CONTEXT:
     description: 'Steps Context'
     required: true
-    default: ${{ toJson(steps) }}
+    default: null
 runs:
   using: 'node12'
   main: 'index.js'
