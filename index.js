@@ -45,7 +45,7 @@ try {
   console.log(JSON.stringify(github.context.jobs));
   console.log(JSON.stringify(github.context));
 
-  axios.post(webhook, JSON.stringify(msg)).catch((error) => {
+  axios.post(webhook, JSON.stringify(message)).catch((error) => {
     core.setFailed(error);
   });
 
