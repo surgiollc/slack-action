@@ -6,6 +6,10 @@ inputs:
     description: 'Url to the slack webhook'
     required: true
     default: null
+  STEPS_CONTEXT:
+    description: 'Steps Context'
+    required: true
+    default: ${{ toJson(steps) }}
 runs:
   using: 'node12'
   main: 'index.js'
