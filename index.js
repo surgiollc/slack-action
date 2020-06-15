@@ -41,9 +41,11 @@ try {
     .replace(/{commit_url}/g, commit_url)
     .replace(/{failed_steps}/, failures.join(', '));
 
-  console.log(JSON.stringify(process.env));
-  console.log(JSON.stringify(github.context.jobs));
-  console.log(JSON.stringify(github.context));
+  console.log(message);
+
+  // console.log(JSON.stringify(process.env));
+  // console.log(JSON.stringify(github.context.jobs));
+  // console.log(JSON.stringify(github.context));
 
   axios.post(webhook, JSON.stringify(message)).catch((error) => {
     core.setFailed(error);
