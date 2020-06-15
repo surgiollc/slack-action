@@ -18,6 +18,14 @@ try {
   const run_url = payload.repository.html_url + "/actions/runs/" + process.env.GITHUB_RUN_ID;
   const script = process.env.GITHUB_WORKFLOW || "Build";
   const webhook = core.getInput("SLACK_WEBHOOK") || null;
+  const steps = JSON.parse(core.getInput("STEPS_CONTEXT")) || {};
+
+  let failures = [];
+  for (const step of Object.keys(steps)) {
+    if (steps[step].outcome === "failure") {
+      failures.push(step);
+    }
+  }
 
   if (!webhook) {
     core.setFailed("No webhook provided. Please add the env variable: SLACK_WEBHOOK");
@@ -30,12 +38,12 @@ try {
     .replace(/{branch_url}/g, branch_url)
     .replace(/{commit_message}/, commit_message)
     .replace(/{run_url}/g, run_url)
-    .replace(/{commit_url}/g, commit_url);
+    .replace(/{commit_url}/g, commit_url)
+    .replace(/{failed_steps}/, failures.join(', '));
 
   axios.post(webhook, message).catch((error) => {
     core.setFailed(error);
-  })
-
+  });
 } catch (error) {
   core.setFailed(error.message);
 }

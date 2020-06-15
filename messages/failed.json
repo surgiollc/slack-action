@@ -11,6 +11,10 @@
         {
           "title": "Commit Message:",
           "value": "{commit_message}"
+        },
+        {
+          "title": "Step ID(s):",
+          "value": "{failed_steps}"
         }
       ],
       "actions": [
