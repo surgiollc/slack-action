@@ -5,11 +5,11 @@ inputs:
   SLACK_WEBHOOK:
     description: 'Url to the slack webhook'
     required: true
-    default: "false"
+    default: ""
   STEPS_CONTEXT:
     description: 'Steps Context'
     required: true
-    default: "false"
+    default: ""
 runs:
   using: 'node12'
   main: 'index.js'

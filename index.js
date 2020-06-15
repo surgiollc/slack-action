@@ -20,8 +20,6 @@ try {
   const webhook = core.getInput("SLACK_WEBHOOK") || null;
   const steps = JSON.parse(core.getInput("STEPS_CONTEXT")) || {};
 
-  console.log(steps)
-
   let failures = [];
   for (const step of Object.keys(steps)) {
     if (steps[step].outcome === "failure") {
@@ -29,7 +27,7 @@ try {
     }
   }
 
-  if (!webhook || webhook === "false") {
+  if (!webhook) {
     core.setFailed("No webhook provided. Please add the env variable: SLACK_WEBHOOK");
   }
 
@@ -42,8 +40,6 @@ try {
     .replace(/{run_url}/g, run_url)
     .replace(/{commit_url}/g, commit_url)
     .replace(/{failed_steps}/, failures.join(', '));
-
-  console.log(message);
 
   axios.post(webhook, message).catch((error) => {
     core.setFailed(error);
