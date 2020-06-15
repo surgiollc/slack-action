@@ -18,7 +18,7 @@ try {
   const run_url = payload.repository.html_url + "/actions/runs/" + process.env.GITHUB_RUN_ID;
   const script = process.env.GITHUB_WORKFLOW || "Build";
   const webhook = core.getInput("SLACK_WEBHOOK") || null;
-  const steps = core.getInput("STEPS_CONTEXT") || {};
+  const steps = JSON.parse(core.getInput("STEPS_CONTEXT")) || {};
 
   console.log(steps)
 
@@ -45,7 +45,7 @@ try {
 
   console.log(message);
 
-  axios.post(webhook, JSON.stringify(message)).catch((error) => {
+  axios.post(webhook, message).catch((error) => {
     core.setFailed(error);
   });
 } catch (error) {
